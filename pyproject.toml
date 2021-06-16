@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "tennis-match-lib"
+version = "0.1.0"
+description = ""
+authors = ["ofhellsfire <ofhellsfire@yandex.ru>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pytest-cov = "^2.12.0"
+pylint = "^2.8.2"
+toolz = "^0.11.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2"
+black = "^21.5b1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 98
+target-version = [ "py39", "py38" ]
+
+[tool.pylint.format]
+max-line-length = 98

@@ -1,0 +1,51 @@
+name: Dev Build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+
+  black-formatting-check:
+    name: Black Formatting Check
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: psf/black@stable
+
+  pylint-check:
+    name: Pylint Check
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: cclauss/GitHub-Action-for-pylint@master
+        with:
+          args: pylint ./tennis_match_lib
+
+  unit-tests:
+    name: Unit Testing
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: cclauss/GitHub-Action-for-pytest@master
+        with:
+          args: pytest -vvs --cov=tennis_match_lib --cov-report term-missing
+
+  # build:
+  #   name: Build tool
+  #   runs-on: ${{ matrix.os }}
+  #   needs: black-formatting-check
+  #   strategy:
+  #     matrix:
+  #       os:
+  #         - 'ubuntu-latest'
+  #         - 'windows-latest'
+  #       python-version:
+  #         - '3.7'
+  #         - '3.8'
+  #         - '3.9'
