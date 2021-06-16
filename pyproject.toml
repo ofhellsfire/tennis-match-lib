@@ -20,6 +20,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 98
+skip-string-normalization = true
 target-version = [ "py39", "py38" ]
 
 [tool.pylint.format]

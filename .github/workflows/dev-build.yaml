@@ -34,7 +34,7 @@ jobs:
       - uses: actions/setup-python@v2
       - uses: cclauss/GitHub-Action-for-pytest@master
         with:
-          args: pytest -vvs --cov=tennis_match_lib --cov-report term-missing
+          args: pytest -vvs
 
   # build:
   #   name: Build tool
