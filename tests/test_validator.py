@@ -25,7 +25,7 @@ def test_re_pattern_creation_single_set():
     _rules = rules.MatchRules(
         max_sets=rules.SetsCount.ONE,
         games_count=rules.GamesCount.SIX,
-        last_set_rule=rules.LastSet.TIEBREAK
+        last_set_rule=rules.LastSet.TIEBREAK,
     )
     fmt = ScoreFormat.default()
     validator = Validator(score_format=fmt, rules=_rules)
@@ -36,7 +36,7 @@ def test_re_pattern_creation_three_sets():
     _rules = rules.MatchRules(
         max_sets=rules.SetsCount.THREE,
         games_count=rules.GamesCount.SIX,
-        last_set_rule=rules.LastSet.TIEBREAK
+        last_set_rule=rules.LastSet.TIEBREAK,
     )
     fmt = ScoreFormat.default()
     validator = Validator(score_format=fmt, rules=_rules)
@@ -48,12 +48,14 @@ def test_re_pattern_creation_five_sets():
     _rules = rules.MatchRules(
         max_sets=rules.SetsCount.FIVE,
         games_count=rules.GamesCount.SIX,
-        last_set_rule=rules.LastSet.TIEBREAK
+        last_set_rule=rules.LastSet.TIEBREAK,
     )
     fmt = ScoreFormat.default()
     validator = Validator(score_format=fmt, rules=_rules)
-    expected = (r'[0-7]:[0-7](\(\d+\))? [0-7]:[0-7](\(\d+\))? [0-7]:[0-7](\(\d+\))?'
-                r'( [0-7]:[0-7](\(\d+\))?)?( [0-7]:[0-7](\(\d+\))?)?')
+    expected = (
+        r'[0-7]:[0-7](\(\d+\))? [0-7]:[0-7](\(\d+\))? [0-7]:[0-7](\(\d+\))?'
+        r'( [0-7]:[0-7](\(\d+\))?)?( [0-7]:[0-7](\(\d+\))?)?'
+    )
     assert validator.re_pattern_raw == expected
 
 
@@ -61,7 +63,7 @@ def test_re_pattern_creation_three_sets_last_tb_set():
     _rules = rules.MatchRules(
         max_sets=rules.SetsCount.THREE,
         games_count=rules.GamesCount.SIX,
-        last_set_rule=rules.LastSet.TIEBREAK_SET
+        last_set_rule=rules.LastSet.TIEBREAK_SET,
     )
     fmt = ScoreFormat.default()
     validator = Validator(score_format=fmt, rules=_rules)
@@ -70,40 +72,22 @@ def test_re_pattern_creation_three_sets_last_tb_set():
 
 
 @pytest.mark.parametrize(
-    "score",
-    [
-        '6:4 6:2',
-        '2:6 5:7',
-        '6:0 6:7(8) 7:5',
-        '6:7(0) 7:6(11) 6:7(100)'
-    ]
+    "score", ['6:4 6:2', '2:6 5:7', '6:0 6:7(8) 7:5', '6:7(0) 7:6(11) 6:7(100)']
 )
 def test_valid_score(validator, score):
     assert validator.validate(score) == validation.Valid(score)
 
 
 @pytest.mark.parametrize(
-    "score",
-    [
-        '6:-1 6:2',
-        'just invalid',
-        '6:0,6:0',
-        '7:5 6:O',
-        '8:3 6:2',
-        '6:0'
-    ]
+    "score", ['6:-1 6:2', 'just invalid', '6:0,6:0', '7:5 6:O', '8:3 6:2', '6:0']
 )
 def test_uno_invalid_score(validator, score):
-    assert validator.validate(score) == validation.Invalid(
-        value=['Score has invalid format']
-    )
+    assert validator.validate(score) == validation.Invalid(value=['Score has invalid format'])
 
 
 def test_invalid_score_too_many_sets(validator):
     score = '6:0 6:0 6:2 5:7'
-    assert validator.validate(score) == validation.Invalid(
-        value=['Number of sets is too large']
-    )
+    assert validator.validate(score) == validation.Invalid(value=['Number of sets is too large'])
 
 
 def test_invalid_score_too_many_won_sets_one(validator):
@@ -145,7 +129,7 @@ def test_invalid_score_small_number_of_games_for_no_tb_set():
     _rules = rules.MatchRules(
         max_sets=rules.SetsCount.THREE,
         games_count=rules.GamesCount.SIX,
-        last_set_rule=rules.LastSet.TIEBREAK_SET
+        last_set_rule=rules.LastSet.TIEBREAK_SET,
     )
     fmt = ScoreFormat.default()
     validator = Validator(score_format=fmt, rules=_rules)

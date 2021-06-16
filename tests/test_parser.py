@@ -34,8 +34,8 @@ def test_positive_uno_without_tiebreak(parser):
             unit_one_sets_diff=2,
             unit_two_sets_diff=-2,
             unit_one_games_diff=6,
-            unit_two_games_diff=-6
-        )
+            unit_two_games_diff=-6,
+        ),
     )
     assert actual == expected
 
@@ -52,8 +52,8 @@ def test_positive_dos_without_tiebreak(parser):
             unit_one_sets_diff=-2,
             unit_two_sets_diff=2,
             unit_one_games_diff=-8,
-            unit_two_games_diff=8
-        )
+            unit_two_games_diff=8,
+        ),
     )
     assert actual == expected
 
@@ -71,8 +71,8 @@ def test_positive_tres_without_tiebreak(parser):
             unit_one_sets_diff=1,
             unit_two_sets_diff=-1,
             unit_one_games_diff=4,
-            unit_two_games_diff=-4
-        )
+            unit_two_games_diff=-4,
+        ),
     )
     assert actual == expected
 
@@ -89,8 +89,8 @@ def test_positive_uno_with_tiebreak(parser):
             unit_one_sets_diff=2,
             unit_two_sets_diff=-2,
             unit_one_games_diff=7,
-            unit_two_games_diff=-7
-        )
+            unit_two_games_diff=-7,
+        ),
     )
     assert actual == expected
 
@@ -108,8 +108,8 @@ def test_positive_dos_with_tiebreak(parser):
             unit_one_sets_diff=-1,
             unit_two_sets_diff=1,
             unit_one_games_diff=-1,
-            unit_two_games_diff=1
-        )
+            unit_two_games_diff=1,
+        ),
     )
     assert actual == expected
 
@@ -127,8 +127,8 @@ def test_positive_uno_with_tiebreak_set(parser_club_rules):
             unit_one_sets_diff=-1,
             unit_two_sets_diff=1,
             unit_one_games_diff=0,
-            unit_two_games_diff=0
-        )
+            unit_two_games_diff=0,
+        ),
     )
     assert actual == expected
 
@@ -146,8 +146,8 @@ def test_positive_dos_with_tiebreak_set(parser_club_rules):
             unit_one_sets_diff=1,
             unit_two_sets_diff=-1,
             unit_one_games_diff=-1,
-            unit_two_games_diff=1
-        )
+            unit_two_games_diff=1,
+        ),
     )
     assert actual == expected
 
