@@ -58,7 +58,7 @@ jobs:
           pytest -vvs --cov=tennis_match_lib --cov-report term-missing
 
   build:
-    name: Build tool
+    name: Build Library
     runs-on: ${{ matrix.os }}
     needs: [black-formatting-check, pylint-check, unit-tests]
     strategy:
